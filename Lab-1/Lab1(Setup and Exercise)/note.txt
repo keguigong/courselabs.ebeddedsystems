@@ -1,0 +1,5 @@
+21/9/2023
+
+Hyper-V is another Virtualisation technique just like Intel HAXM. You cannot use both at the same time
+
+https://www.tektutorialshub.com/android-studio/haxm-installation-failed-install-intel-haxm-in-windows/

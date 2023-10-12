@@ -18,14 +18,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button btnPicture = (Button) findViewById(R.id.btnPicture);
+        Button btnName = findViewById(R.id.btnName);
         btnPicture.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                TextView tvName = (TextView) findViewById(R.id.tvName);
-                tvName.setText(R.string.nameBoy);
                 ImageView ivPicture = (ImageView) findViewById(R.id.ivPicture);
-                ivPicture.setImageResource(R.drawable.boy);
-                EditText etName = (EditText) findViewById(R.id.etName);
+                if (isBoy) {
+                    ivPicture.setImageResource(R.drawable.boy);
+                } else {
+                    ivPicture.setImageResource(R.drawable.girl);
+                }
+                isBoy = !isBoy;
+            }
+        });
+        btnName.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                TextView tvName = (TextView) findViewById(R.id.tvName);
+                EditText etName = findViewById(R.id.etName);
                 String name = etName.getText().toString();
+                tvName.setText(name);
             }
         });
     }
