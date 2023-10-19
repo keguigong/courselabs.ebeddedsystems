@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Lab_1_2"
+rootProject.name = "ece.course.lab_1_2"
 include(":app")
