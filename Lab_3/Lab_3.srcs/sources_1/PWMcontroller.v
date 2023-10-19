@@ -40,7 +40,7 @@ reg [13:0] count;
 // you can also modify other parts.
 reg [1:0] flag;
 
-always @(posedge clk_5MHz, posedge reset)
+always @(posedge clk_5MHz)
 begin  
     if (reset)
     begin
@@ -48,20 +48,26 @@ begin
         // you can also modify other parts.
         count <= 0;
         beep_r <= 0;
-        flag <= 1'b1;
+        flag <= 1'b0;
     end 
     else
     begin
         // write your code here
         // you can also modify other parts.
-        if (count < countStart) begin
-            count <= count + 1;
+        if (countStart > 0) begin
+            if (count < countStart - 1) begin
+                count <= count + 1;
+            end else begin
+                count <= 0;
+                flag <= ~flag;
+            end
         end else begin
-            count <= 0;
-            flag <= ~flag;
+            flag <= 1'b0;
         end
     end
-    beep <= flag;
+    beep_r <= flag;
 end
+
+assign beep = beep_r;
 
 endmodule

@@ -26,7 +26,7 @@ module piano(
         reset,
         beep
     );
-    
+
 input  clk_in;
 input  reset;
 input  wire [9:0] IOs;
