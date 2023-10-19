@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 10/12/2023 10:20:24 AM
+// Create Date: 09/28/2021 12:45:46 AM
 // Design Name: 
-// Module Name: control_LED
+// Module Name: key_encoder
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,10 +20,18 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module control_LED(
-    input [0:7] dip_switch,
-    output [0:7] led
-    );
-    
-    assign led = dip_switch;
+module key_encoder(clk_5MHz, IOs, notecode);
+
+input  clk_5MHz;
+input  wire [9:0] IOs;
+output reg [4:0] notecode;
+
+	
+/*****************************************************************************/
+always @ (posedge clk_5MHz)
+begin
+// write your code here
+// you can also modify other parts.
+end	
+
 endmodule
