@@ -28,7 +28,7 @@ input wire[4:0] notecode;
 output reg[13:0] countStart;
 
 reg [15:0] frequency;
-reg [4:0] freq_offset;
+reg [13:0] freq_offset;
 
 always @(posedge clk_5MHz) begin
     case (notecode)
@@ -79,7 +79,12 @@ always @ (posedge clk_5MHz) begin
    end else begin
        countStart <= 0;
    end
-end	
+end
+
+always @(countStart)
+begin
+    $display("counterStart:", countStart);
+end
 
 /*****************************************************************************/
 // output wire[13:0] countStart;

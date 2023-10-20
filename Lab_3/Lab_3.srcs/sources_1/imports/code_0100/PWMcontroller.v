@@ -55,7 +55,7 @@ begin
         // write your code here
         // you can also modify other parts.
         if (countStart > 0) begin
-            if (count < countStart - 1) begin
+            if (count < countStart) begin
                 count <= count + 1;
             end else begin
                 count <= 0;
