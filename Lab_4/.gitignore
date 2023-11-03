@@ -1,0 +1,9 @@
+**/.DS_Store
+*.cache/
+*.gen/
+*.runs/
+*.sim/
+*.hw/
+*.jou
+*.log
+*.str

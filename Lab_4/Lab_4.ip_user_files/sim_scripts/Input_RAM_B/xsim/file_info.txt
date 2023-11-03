@@ -1,0 +1,2 @@
+Input_RAM_B.v,verilog,xil_defaultlib,../../../../Lab_4.gen/sources_1/ip/Input_RAM_B/sim/Input_RAM_B.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v
