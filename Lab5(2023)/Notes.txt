@@ -1,0 +1,9 @@
+6/10/2022
+
+1) Updated link for download
+
+https://apkpure.com/glance-wearable-for-runner/com.cwb.glance/download
+
+20/9/2023
+
+1) Target build: Andriod 8.0 on Nokia Android 10.0 phone is working and no halt
