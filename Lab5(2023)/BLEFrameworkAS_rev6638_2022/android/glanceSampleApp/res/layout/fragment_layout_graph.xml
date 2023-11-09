@@ -14,6 +14,13 @@
         android:layout_weight="3"
         android:background="#FFFFFF"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
+    <FrameLayout
+        android:id="@+id/graph_gyro_rawdata"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="#FFFFFF"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

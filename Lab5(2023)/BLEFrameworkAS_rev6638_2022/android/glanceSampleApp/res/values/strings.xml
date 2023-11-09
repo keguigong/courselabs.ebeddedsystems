@@ -57,7 +57,7 @@
     <string name="str_minus">-</string>
     <string name="str_plus">+</string>
     <string name="str_getset">Execute</string>
-    <string name="str_show_graph">Show Accel Graph</string>
+    <string name="str_show_graph">Show Accel/Gyro Graph</string>
     <string name="str_start_motion_stream">Read Motion Stream</string>
     <string name="str_stop_motion_stream">Stop Motion Stream</string>
     <string name="str_synchronous_command_test">Synchronous command test</string>

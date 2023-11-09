@@ -42,14 +42,16 @@ public class GraphFragment extends Fragment {
     private static final int MSG_STATE_SET_CONNECTION_INTERVAL = MSG_STATE_WAITING_SET_STREAMING_MODE + 1;
     private static final int MSG_STATE_WAITING_SET_CONNECTION_INTERVAL = MSG_STATE_SET_CONNECTION_INTERVAL + 1;
     private static final int MSG_STATE_TIMEOUT = MSG_STATE_WAITING_SET_CONNECTION_INTERVAL + 1;
-    
     private TextView mDataAnalysis;
     private FrameLayout mGraphViewAccl;
+    private FrameLayout mGraphViewGyro;
     private GraphDisplayXYZ mAccelGraph;
+    private GraphDisplayXYZ mGyroGraph;
     private Button mCapture;
     private int mGraphX;
     private double mRMSAccel[];
-	private boolean isCapturing;
+    private double mRMSGyro[];
+    private boolean isCapturing;
     private boolean mKeep4SecGraphData;
     private int mStateLoopCount = 0;
     private boolean mIsReceivedSetStreamingMode = false;
@@ -79,6 +81,7 @@ public class GraphFragment extends Fragment {
 
         mDataAnalysis = (TextView) view.findViewById(R.id.graph_analysis);
         mGraphViewAccl = (FrameLayout) view.findViewById(R.id.graph_accel_rawdata);
+        mGraphViewGyro = view.findViewById(R.id.graph_gyro_rawdata);
         mCapture = (Button) view.findViewById(R.id.graph_capture_4s);
         mCapture.setOnClickListener(mOn4sClickListener);
         isCapturing = false;
@@ -111,6 +114,10 @@ public class GraphFragment extends Fragment {
         mGraphViewAccl.removeAllViews();
         mAccelGraph = new GraphDisplayXYZ(getActivity(), 4096-500, 4096+500);
         mGraphViewAccl.addView(mAccelGraph.getView());
+
+        mGraphViewGyro.removeAllViews();
+        mGyroGraph = new GraphDisplayXYZ(getActivity(), 4096-500, 4096+500);
+        mGraphViewGyro.addView(mGyroGraph.getView());
     }
 
     public void processMotionData(HashMap<String, GlanceStatus.SensorData> kvs)
@@ -125,7 +132,7 @@ public class GraphFragment extends Fragment {
             Log.e(TAG, "accelGraph not init");
             return;
         } else if (!mAccelGraph.isRealTimeUpdate()) {
-            Log.e(TAG, "accelGraph not in real time mdoe");
+            Log.e(TAG, "accelGraph not in real time mode");
             return;
         }
         if (mAccelGraph.getSize() == 0) {
@@ -139,6 +146,22 @@ public class GraphFragment extends Fragment {
         mDataAnalysis.setText("Root Mean Square:\n");
         mDataAnalysis.append(String.format("Accel: %.02f %.02f %.02f\n", mRMSAccel[0], mRMSAccel[1], mRMSAccel[2]));
 
+        if (mGyroGraph == null) {
+            Log.e(TAG, "gyroGraph not init");
+            return;
+        } else if (!mGyroGraph.isRealTimeUpdate()) {
+            Log.e(TAG, "gyroGraph not in real time mode");
+            return;
+        }
+        if (mGyroGraph.getSize() == 0) {
+            mHandler.sendEmptyMessageDelayed(MSG_KEEP_4SEC_GRAPH_DATA, 4000);
+        }
+        if (mKeep4SecGraphData) {
+            mGyroGraph.removeFirst();
+        }
+        mGyroGraph.addPoint(mGraphX, gyro);
+        mRMSGyro = mGyroGraph.getRMS();
+        mDataAnalysis.append(String.format("Gyro: %.02f %.02f %.02f\n", mRMSGyro[0], mRMSGyro[1], mRMSGyro[2]));
     }
 
     public void SetStreamingModeSuccess()
