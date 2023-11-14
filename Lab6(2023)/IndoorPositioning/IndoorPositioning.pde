@@ -1,4 +1,4 @@
-String device_ID = "NA";    //modify this value according to your locator device
+String device_ID = "D8";    //modify this value according to your locator device
 
 void setup() {
   size(1063, 845);  //set the size of the window

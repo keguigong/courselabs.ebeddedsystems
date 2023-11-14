@@ -9,11 +9,38 @@ class Beacon
   }
 }
 
+  
+float rssiToPower(int rssi)
+{
+  return pow(10, -3) * pow(10, rssi / 10);
+}
+
 float rssiToDistance(int rssi)
-{//Modify your code here
+{
   int rssi_at_1m = -10;                                    //wrong value
-  return rssi / rssi_at_1m * 0.5;                          //wrong model
+  //return rssi / rssi_at_1m * 0.5;                          //wrong model
   //Modify your code here
+  float P_r0 = rssiToPower(rssi_at_1m);
+  float P_r = rssiToPower(rssi);
+  return sqrt(P_r0 / P_r);
+}
+
+
+void getRssiAt1m(Beacon[] received_beacon, int received_beacon_num)
+{
+  int ref_beacon_id = 100;
+  if (received_beacon_num > 0)
+  {
+      for (int i = 0; i < received_beacon.length; i++)
+      {
+        if (received_beacon[i].id == ref_beacon_id)
+        {
+          println("Beacon ID: ", received_beacon[i].id, "RSSI: ", received_beacon[i].rssi);
+          return;
+        }
+      }
+  }
+  println("No beacon received");
 }
 
 void calcPosition(Beacon[] received_beacon, int received_beacon_num)
