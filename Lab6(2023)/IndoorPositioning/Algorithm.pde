@@ -17,15 +17,14 @@ float rssiToPower(int rssi)
 
 float rssiToDistance(int rssi)
 {
-  int rssi_at_1m = -10;                                    //wrong value
-  //return rssi / rssi_at_1m * 0.5;                          //wrong model
+  int rssi_at_1m = -57; // Use getRssiAt1m() first to get rssi_at_1m                  
   //Modify your code here
   float P_r0 = rssiToPower(rssi_at_1m);
   float P_r = rssiToPower(rssi);
   return sqrt(P_r0 / P_r);
 }
 
-
+// For get rssi_at_1m, check the println value
 void getRssiAt1m(Beacon[] received_beacon, int received_beacon_num)
 {
   int ref_beacon_id = 100;

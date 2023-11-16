@@ -42,7 +42,7 @@ void messageReceived(String topic, byte[] payload) {
         calcPosition(received_beacon, received_beacon_num);
         
         // get rssi_at_1m
-        getRssiAt1m(received_beacon, received_beacon_num);
+        //getRssiAt1m(received_beacon, received_beacon_num);
       }
     }
   }
